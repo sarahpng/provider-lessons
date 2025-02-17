@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_lessons/first_lecture/provider/count_provider.dart';
 import 'package:provider_lessons/first_lecture/screens/count_Example.dart';
+import 'package:provider_lessons/fourth_lecture/provider/theme_change_provider.dart';
+import 'package:provider_lessons/fourth_lecture/screens/dark_theme.dart';
 import 'package:provider_lessons/second_lecture/provider/container_one_provider.dart';
 import 'package:provider_lessons/second_lecture/screen/slider_example.dart';
 import 'package:provider_lessons/third_lecture/provider/favourite_provider.dart';
@@ -22,18 +24,33 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => CountProvider()),
         ChangeNotifierProvider(create: (context) => ContainerOneProvider()),
         ChangeNotifierProvider(create: (context) => FavouriteProvider()),
+        ChangeNotifierProvider(create: (context) => ThemeChangeProvider()),
       ],
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        routes: {
-          '/myFavourites': (context) => MyFavourites(),
-        },
-        home: const FavouriteScreen(),
-      ),
+      child: Builder(builder: (BuildContext context) {
+        final themeChanger = Provider.of<ThemeChangeProvider>(context);
+        return MaterialApp(
+          title: 'Flutter Demo',
+          themeMode: themeChanger.themeMode,
+          theme: ThemeData(
+            brightness: Brightness.light,
+            primarySwatch: Colors.blue,
+            useMaterial3: false,
+          ),
+          darkTheme: ThemeData(
+            brightness: Brightness.dark,
+            appBarTheme: AppBarTheme(
+              backgroundColor: Colors.red,
+            ),
+            primaryColor: Colors.red,
+            primarySwatch: Colors.red,
+            useMaterial3: false,
+          ),
+          routes: {
+            '/myFavourites': (context) => MyFavourites(),
+          },
+          home: const DarkThemeScreen(),
+        );
+      }),
     );
   }
 }
