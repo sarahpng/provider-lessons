@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:provider_lessons/fifth_lecture/screens/notfiy_listener_screen.dart';
 import 'package:provider_lessons/first_lecture/provider/count_provider.dart';
 import 'package:provider_lessons/first_lecture/screens/count_Example.dart';
 import 'package:provider_lessons/fourth_lecture/provider/theme_change_provider.dart';
@@ -48,7 +49,7 @@ class MyApp extends StatelessWidget {
           routes: {
             '/myFavourites': (context) => MyFavourites(),
           },
-          home: const DarkThemeScreen(),
+          home: NotfiyListenerScreen(),
         );
       }),
     );
