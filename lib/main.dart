@@ -7,6 +7,8 @@ import 'package:provider_lessons/fourth_lecture/provider/theme_change_provider.d
 import 'package:provider_lessons/fourth_lecture/screens/dark_theme.dart';
 import 'package:provider_lessons/second_lecture/provider/container_one_provider.dart';
 import 'package:provider_lessons/second_lecture/screen/slider_example.dart';
+import 'package:provider_lessons/sixth_lecture/provider/auth_provider.dart';
+import 'package:provider_lessons/sixth_lecture/screens/login_screen.dart';
 import 'package:provider_lessons/third_lecture/provider/favourite_provider.dart';
 import 'package:provider_lessons/third_lecture/screens/favourite_screen.dart';
 import 'package:provider_lessons/third_lecture/screens/my_favourites.dart';
@@ -26,6 +28,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => ContainerOneProvider()),
         ChangeNotifierProvider(create: (context) => FavouriteProvider()),
         ChangeNotifierProvider(create: (context) => ThemeChangeProvider()),
+        ChangeNotifierProvider(create: (context) => AuthProvider()),
       ],
       child: Builder(builder: (BuildContext context) {
         final themeChanger = Provider.of<ThemeChangeProvider>(context);
@@ -49,7 +52,7 @@ class MyApp extends StatelessWidget {
           routes: {
             '/myFavourites': (context) => MyFavourites(),
           },
-          home: NotfiyListenerScreen(),
+          home: LoginScreen(),
         );
       }),
     );
